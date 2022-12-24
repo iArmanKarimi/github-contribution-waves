@@ -23,14 +23,12 @@ class CalendarGraph {
   #filterGElements = () => Array
     .from(this.el_group_contrib)
     .filter(el => el.tagName === 'g')
-  // is_array = (arr) => Array.isArray(arr)
-  #isColumnFullWeek = (index) => this.getColumn(index).length === 7;
-  get #rows() { return [] }
-  get #columns() { return [] }
-  // no usage for regular wave f0orms
-  getRow = (row_index) => [];
-  // get all rows of a column
-  getColumn = (col_index) => [];
+  get #rows() { return [].slice() }
+  get #columns() { return [].slice() }
+  // get row by index
+  getRow = (row_index) => this.#particles.filter(col => col[row_index]);
+  // get column by index
+  getColumn = (col_index) => this.#particles[col_index];
   // returns the last column. used for offsetting (since first/last columns may have a different height)
   lastColumn = () => { }
   // returns the first column
