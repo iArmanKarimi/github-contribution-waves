@@ -8,6 +8,7 @@
 // @exclude      https://github.com/*/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=github.com
 // @supportURL   https://github.com/iArmanKarimi/github-contribution-waves/
+// @run-at       document-end
 // @grant        none
 // @license      MIT
 // ==/UserScript==
