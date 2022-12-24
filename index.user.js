@@ -17,6 +17,7 @@ const log = (output) => console.log(`[Github contribution waves]: ${output}`);
 
 class CalendarGraph {
   // 2d 7xCols array
+  /** @type Array<[]> */
   #particles = []
   constructor() { }
   // filter g elements which include the <rect>
