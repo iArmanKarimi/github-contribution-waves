@@ -37,12 +37,22 @@ class CalendarGraph {
   }
   get #rows() { return [].slice() }
   get #columns() { return [].slice() }
+  // no need for now, will implement later
+  set emptyColor(color) { throw new Error("Not implemented"); }
+  // To vertical/horizontal alignment // no need for now, will implement later
+  switchAlignment() {
+    const switched = []
+    for (let x = 0; x < this.#particles.length; x++) {
+      for (let y = 0; y < this.#particles[i].length; y++) {
+        switched[y][x] = this.#particles[x][y];
+      }
+    }
+    this.#particles = switched
+  }
   // get row by index
   getRow = (row_index) => this.#particles.filter(col => col[row_index]);
   // get column by index
   getColumn = (col_index) => this.#particles[col_index];
-  // returns the last column. used for offsetting (since first/last columns may have a different height)
-  lastColumn = () => { }
   // returns the first column
   firstColumn = () => { }
   // clear colors of a column. i.e. set colors to nothing
