@@ -19,11 +19,22 @@ class CalendarGraph {
   // 2d 7xCols array
   /** @type Array<[]> */
   #particles = []
-  constructor() { }
-  // filter g elements which include the <rect>
-  #filterGElements = () => Array
-    .from(this.el_group_contrib)
-    .filter(el => el.tagName === 'g')
+  #el_group_contrib = document.querySelector("#user-profile-frame > div > div.mt-4.position-relative > div > div.col-12.col-lg-10 > div.js-yearly-contributions > div:nth-child(1) > div > div > svg > g")
+  constructor() {
+    this.#particles = Array
+      .from(this.#el_group_contrib.children)
+      .filter(el => el.tagName === 'g')
+      .map(el => [...el.children])
+
+    // trim
+    const isFullWeek = arr => arr.length === 7;
+    if (!isFullWeek(this.#particles[0])) {
+      this.#particles.shift();
+    }
+    if (!isFullWeek(this.#particles[this.#particles.length - 1])) {
+      this.#particles.pop();
+    }
+  }
   get #rows() { return [].slice() }
   get #columns() { return [].slice() }
   // get row by index
