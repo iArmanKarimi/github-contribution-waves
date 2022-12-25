@@ -57,11 +57,30 @@ class CalendarGraph {
   // clear colors of a column. i.e. set colors to nothing
   clearColumn = (col_index) => null;
   // clears all columns. used for framing. i.e. set colors to nothing 
-  clearColumns = () => null;
-  // Directly set color to particle by coordinates.
-  setParticle0xColor = (col_index, row_index, color_hex) => null;
+  clearColumns = () => {
+    this.#particles.forEach((col, colIndex) => {
+      col.forEach((row, rowIndex) => {
+        this.setParticleColorByLvl(colIndex, rowIndex, 0)
+      })
+    })
+  };
+  /** (advanced) Directly set color to particle by coordinates.
+   * @param {number} col_index column index
+   * @param {number} row_index row index
+   * @param {string} color_hex hex color or web color
+   */
+  setParticle0xColor = (col_index, row_index, color_hex) => {
+    this.#particles[col_index][row_index].style.fill = color_hex
+  };
   // set default color's level to particle by coordinates.
-  setParticleColorByLvl = (col_index, row_index, color_lvl) => null;
+  /** Sets the particle color by level
+   * @param {number} col_index column index
+   * @param {number} row_index row index
+   * @param {(0 | 1 | 2 | 3 | 4)} color_lvl color level. higher is stronger (0 for empty)
+  */
+  setParticleColorByLvl = (col_index, row_index, color_lvl) => {
+    this.#particles[col_index][row_index].setAttribute(this.#COLOR_ATTR, color_lvl)
+  };
 }
 
 function __main__() {
