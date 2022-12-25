@@ -19,6 +19,8 @@ class CalendarGraph {
   // 2d 7xCols array
   /** @type Array<[]> */
   #particles = []
+  #COLOR_ATTR = 'data-level'
+  optionColorLevels = { 'empty': 0, 1: 1, 2: 2, 3: 3, 4: 4 }
   #el_group_contrib = document.querySelector("#user-profile-frame > div > div.mt-4.position-relative > div > div.col-12.col-lg-10 > div.js-yearly-contributions > div:nth-child(1) > div > div > svg > g")
   constructor() {
     this.#particles = Array
@@ -35,11 +37,10 @@ class CalendarGraph {
       this.#particles.pop();
     }
   }
-  get #rows() { return [].slice() }
-  get #columns() { return [].slice() }
+  // get #columns() { return [].slice() }
   // no need for now, will implement later
   set emptyColor(color) { throw new Error("Not implemented"); }
-  // To vertical/horizontal alignment // no need for now, will implement later
+  // To vertical/horizontal alignment // no need for now, will implement later // BUG
   switchAlignment() {
     const switched = []
     for (let x = 0; x < this.#particles.length; x++) {
@@ -47,14 +48,12 @@ class CalendarGraph {
         switched[y][x] = this.#particles[x][y];
       }
     }
-    this.#particles = switched
+    this.#particles = switched.slice()
   }
   // get row by index
   getRow = (row_index) => this.#particles.filter(col => col[row_index]);
   // get column by index
   getColumn = (col_index) => this.#particles[col_index];
-  // returns the first column
-  firstColumn = () => { }
   // clear colors of a column. i.e. set colors to nothing
   clearColumn = (col_index) => null;
   // clears all columns. used for framing. i.e. set colors to nothing 
