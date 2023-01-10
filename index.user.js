@@ -45,6 +45,20 @@ class CalendarGraph {
   setParticleColorByLvl = (col_index, row_index, color_lvl) => null;
 }
 
+class Wave {
+  constructor() { }
+  /**
+   * @description contains height values to be set to each column
+   * @type {number[]}
+   */
+  value = []
+  get value() { return this.value }
+  /**
+   * @param {number[]} value
+   */
+  set value(value) { this.value = value }
+}
+
 function __main__() {
   function contribution_calendar_begin() {
     // set calendar to current year - get a wide view. // remove this to see how it works without it at the end.
